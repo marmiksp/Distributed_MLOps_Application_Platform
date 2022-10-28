@@ -1,0 +1,18 @@
+{
+    "app_name": "sample_application",
+    "app_author": "Ramesh Loganthan",
+    "model_list": [
+        {
+            "model_name": "detect_expression"
+        },
+        {
+           "model_name": "face_recognition"
+        },
+        {
+            "model_name": "motiondetection"
+         },
+         {
+            "model_name": "firedetect"
+         }
+    ]
+}

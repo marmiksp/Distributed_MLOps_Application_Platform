@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Sentiment Analysis App</title>
+
+    <script type="text/javascript">
+
+window.onload = function ()
+{  
+	function makeChart(){
+	var dataPoints = [];  
+var chart = new CanvasJS.Chart("chartContainer", {
+	animationEnabled: true,
+	
+	title:{
+		text:"Class Attentiveness",
+	},
+	axisX:{
+		interval: 1
+	},
+	axisY2:{
+		interlacedColor: "rgba(1,77,101,.2)",
+		gridColor: "rgba(1,77,101,.1)",
+		title: "Sentiment Percentage",
+	},
+	
+	data: [{
+		type: "bar",
+		name: "sentiment",
+		axisYType: "secondary",
+		color: "#014D65",
+		dataPoints: dataPoints
+	}]
+});
+	fetch(window.location.origin + '/sentiment').then(response => response.json()).then(function(data){
+        console.log(data)
+		for(var property in data){  
+      dataPoints.push({y:Number(data[property]), label:property});}
+	console.log(dataPoints)
+chart.render();
+}); 
+}
+
+var runButton = document.getElementById("chart");
+runButton.addEventListener("click", makeChart);}
+        function picture(){ 
+        var pic = "/1.png"
+        document.getElementById('bigpic').src = pic;
+
+        }
+
+
+    </script>
+
+
+</head>
+
+<body>
+
+    
+    <div class="container" style="height: 200px;position: relative;border: 3px solid green;text-align: center;margin-bottom: 100px;">
+        <h1>Sentiment Analysis App</h1>
+        <button id="chart" style="display: block; margin: 0 auto;">View Sentiment of the Class</button>
+    </div>
+    <br>
+    <br>
+    <div id="chartContainer" style="height: 300px; width:960px;align-items: center;display: block; margin:auto;"></div>
+    <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!--<img id="bigpic" style="display: block;margin-left: auto;margin-right: auto;width: 40%;" src="" alt="" />-->
+
+</body>
+
+</html>

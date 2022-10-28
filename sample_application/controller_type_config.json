@@ -1,0 +1,27 @@
+[
+    {
+        "controller_type": "sprinkler",
+        "output_type": "string",
+        "Existing": "True"
+    },
+    {
+        "controller_type": "light",
+        "output_type": "string",
+        "Existing": "True"
+    },
+    {
+        "controller_type": "alarm",
+        "output_type": "string",
+        "Existing": "True"
+    },
+    {
+        "controller_type": "indicator",
+        "output_type": "string",
+        "Existing": "True"
+    },
+    {
+        "controller_type": "fan",
+        "output_type": "string",
+        "Existing": "True"
+    }
+]

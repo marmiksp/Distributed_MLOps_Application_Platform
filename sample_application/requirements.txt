@@ -1,0 +1,5 @@
+openpyxl==3.0.9
+openpyxl-image-loader==1.0.5
+requests==2.26.0
+Flask==2.0.2
+Flask-Cors==3.0.10

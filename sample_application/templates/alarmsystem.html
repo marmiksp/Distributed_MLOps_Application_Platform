@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+           
+            function FireCheck(){
+    fetch(window.location.origin + '/firedetect').then(response => response.json()).then(function(data){
+       
+   
+        window.alert(data['temperature']);
+        window.alert(data['smoke']);
+        
+            if(data['smoke']=="FIREEE!!!!")
+            {var audio = new Audio("Warning Siren-SoundBible.com-898272278.mp3");
+             audio.play();
+            }
+        });
+          }
+            </script>
+    </head>
+    <body>
+        <button id="fire" onclick="javascript:FireCheck()">CheckFire</button>
+       
+    </body>
+</html>

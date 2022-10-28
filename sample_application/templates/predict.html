@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Welcome</title>
+  
+</head>
+
+<body>
+<div id="load" class="load">
+<!-- <li>{{ result }}</li> -->
+
+{% for uri in result['data'] %}
+    <img src="{{ uri }}" height="100" width="100">
+{% endfor %}
+
+<h3>
+    {{result['res']}}
+</h3>
+</div>
+</body>
+</html>

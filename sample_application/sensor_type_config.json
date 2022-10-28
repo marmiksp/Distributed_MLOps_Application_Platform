@@ -1,0 +1,22 @@
+[
+    {
+        "sensor_type": "camera",
+        "output_type": "image",
+        "Existing": "True"
+    },
+    {
+        "sensor_type": "temperature",
+        "output_type": "int",
+        "Existing": "True"
+    },
+    {
+    "sensor_type": "smoke",
+    "output_type": "string",
+    "Existing": "True"
+    },
+    {
+        "sensor_type": "video",
+        "output_type": "stream",
+        "Existing": "True"
+    }
+]

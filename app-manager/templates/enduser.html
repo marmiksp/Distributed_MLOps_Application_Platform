@@ -1,0 +1,278 @@
+<html>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>User | MLOps Seva</title>
+   <script>
+
+      function getdata(){
+         event.preventDefault()
+         var app_name = document.getElementById("app_name").value
+         var start_time = document.getElementById("start_time").value
+         var duration = document.getElementById("duration").value
+         var standalone = document.querySelector('input[name="standalone"]:checked').value
+         var location = document.getElementById("location").value
+
+         send_json = {
+            "app_name" : app_name,
+            "start_time" : start_time,
+            "duration" : duration,
+            "standalone" : standalone,
+            "location" : location
+         }
+         console.log(send_json)
+         fetch (`{{ deploy_app }}` , {
+            method : "POST",
+            body : JSON.stringify(send_json),
+            headers : {
+            "Content-type": "application/json; charset=UTF-8"
+            }
+         })
+         .then(function (response){
+            resp = response.json();
+            alert(resp["message"]["message"]);
+         })
+      }
+
+      show = (e) => {
+         fetch (`{{ get_app_list }}`)
+         .then (resp =>resp.json())
+         .then (data => {
+            list = document.getElementById('app-list')
+            list.innerText = ""
+            data.forEach(element => {
+               let li = document.createElement("div");
+               li.classList.add("app-list-item")
+               li.innerText = element["app_name"];
+               li.addEventListener('click', () => {
+                  console.log(li.innerHTML);
+                  document.getElementById("app_name").value = li.innerHTML;
+
+                  for(let i=0; i<list.children.length; i++){
+                     if(list.children[i].classList.contains("highlight")){
+                        list.children[i].classList.remove("highlight")
+                     }
+                  }
+
+                  li.classList.add("highlight");
+               });
+               console.log(element)
+               list.appendChild(li);
+            })
+         })
+      }
+
+   </script>
+
+   <style>
+      *{
+         font-family: Arial;
+      }
+
+      body {
+         background-color: #eee;
+      }
+
+      .container {
+         padding: 10px;
+      }
+
+      .sub-container {
+         display: flex;
+         flex-direction: column;
+         padding: 10px;
+         flex-wrap: wrap;
+         margin-bottom: 50px;
+      }
+
+      .app-title {
+         font-size: 20px;
+         font-weight: 700;
+      }
+
+      div#app-list {
+         display: flex;
+         flex-wrap: wrap;
+      }
+
+      .app-list-item {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 10px;
+         padding: 10px 15px;
+         background-color: #77c7eb;
+         cursor: pointer;
+         font-size: 14px;
+         font-weight: 700;
+         height: 100%;
+         margin: 10px 10px 10px 0px;
+         border-radius: 5px
+      }
+
+      .highlight {
+         background-color: #045e86;
+         color: #eee;
+      }
+
+      .container form {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            flex-direction: column;
+            padding: 10px 15px;
+            flex: 1;
+        }
+
+        .form-control {
+            display: flex;
+            flex-direction: column;
+            margin: 10px;
+            flex: 1;
+            width: 40%;
+        }
+
+        .form-control button {
+            width: 50%;
+            cursor: pointer;
+            margin: 0% 22.5%;
+            background-color: #045e86;
+            color: #eee;
+            border: none;
+            padding: 10px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        input[type="text"]#app_name:disabled {
+         background-color: #fff;
+         border: 1px solid;
+         padding: 1px 2px;
+         font-size: 14px;
+         font-weight: 700;
+         border-radius: 2px;
+      }
+
+      input#app_name::placeholder {
+         font-weight: 400;
+         font-size: 13px;
+      }
+
+      .radio-grp-standalone{
+         display: flex;
+      }
+
+      .radio-standalone {
+         flex: 0.25;
+      }
+
+      .app-header {
+         display: flex;
+         flex: 1;
+         justify-content: space-between;
+      }
+
+      .app-header .heading {
+         font-size: 25px;
+         font-weight: 700;
+         padding-bottom: 10px;
+         text-decoration: underline;
+      }
+
+      .app-header .action-btn {
+         display: flex;
+         flex: 1;
+         justify-content: flex-end;
+      }
+
+      .app-header .action-btn button {
+         background-color: #045e86;
+         color: #eee;
+         border: none;
+         padding: 10px 20px;
+         margin: 0px 5px;
+         font-size: 14px;
+         font-weight: 700;
+         cursor: pointer;
+         margin: 0px 5px;
+      }
+
+      footer {
+         bottom: 0;
+         position: absolute;
+         width: 100%;
+         margin: 0px -8px 0px -8px;
+      }
+
+      .footer-left {
+         min-height: 40px;
+         background-color: #ccc;
+         padding: 10px 10px;
+      }
+
+   </style>
+
+   <body onload="javascript:show()">
+      <div class="container">
+         <div class="app-header">
+            <div class="heading">MLOps Seva</div>
+            <div class="action-btn">
+               <a href="{{ home }}"><button class="home">Home</button></a>
+               <a href="{{ home }}"><button class="logout">Logout</button></a>
+            </div>
+         </div>
+         <div class="sub-container">
+            <div class="app-title">Apps</div>
+            <div id="app-list">
+               <div class="empty-msg">
+                  No apps available.
+               </div>
+            </div>
+         </div>
+         
+         <div class="sub-container">
+            <div class="app-title">Application Deploy Form</div>
+            <form id="myform" onsubmit="getdata()">
+               <div class="form-control">
+                  <label for="app_name">App Name</label>
+                  <input type="text" id="app_name" name="app_name" placeholder="Select from list" disabled>
+               </div>
+               <div class="form-control">
+                  <label for="start_time">Start Time</label>
+                  <input type="start_time" id="start_time" name="start_time" placeholder="YYYY-MM-DD HH:MM">
+               </div>
+               <div class="form-control">
+                  <label for="duration">duration</label>
+                  <input type="number" step="0.01" id="duration" name="duration" placeholder="Enter duration in Hrs">
+               </div>
+               <div class="form-control">
+                  <label>Run app as stand alone</label>
+                  <div class="radio-grp-standalone">
+                     <div class="radio-standalone">
+                        <input type="radio" name="standalone" id="standalone1" value="1" />
+                        <label for="standalone1">Yes</label>
+                     </div>
+                     <div class="radio-standalone">
+                        <input type="radio" name="standalone" id="standalone0" value="0" />
+                        <label for="standalone0">No</label>
+                     </div>
+                     
+                  </div>
+               </div>
+               <div class="form-control">
+                  <label for="location">location</label>
+                  <input type="text" id="location" name="location" placeholder="Enter location">
+               </div>
+               <div class="form-control">
+                  <button type = "submit">Submit</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </body>
+   <footer>
+      <div class="footer-left">
+         &copy; 2022 Internals of Application Server : Group-6
+      </div>
+  </footer>
+</html>
+      

@@ -1,0 +1,255 @@
+<html>
+   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>App Developer | MLOps Seva</title>
+   <script>
+      show = (e) => {
+         fetch(`{{ get_available_resources }}`)
+         .then ( resp => resp.json())
+         .then(data => {
+               var list = document.getElementById('model-list')
+               list.innerText = ""
+               var model_list = data['models']["model_list"]
+               console.log(model_list)
+               model_list.forEach(element => {
+                  let li = document.createElement("div");
+                  li.classList.add("model-list-item");
+                  li.innerText = element;
+                  console.log(element)
+                  list.appendChild(li);
+               });
+
+
+               var list = document.getElementById('sensor-list')
+               list.innerText = ""
+               var sensor_list = data['sensors']["response"]
+               console.log(model_list)
+               sensor_list.forEach(element => {
+                  let li = document.createElement("div");
+                  li.classList.add("sensor-list-item");
+                  li.innerText = element;
+                  console.log(element)
+                  list.appendChild(li);
+               });
+
+               var list = document.getElementById('controller-list')
+               list.innerText = ""
+               var sensor_list = data['controllers']
+               console.log(model_list)
+               sensor_list.forEach(element => {
+                  let li = document.createElement("div");
+                  li.classList.add("controller-list-item");
+                  li.innerText = element;
+                  console.log(element)
+                  list.appendChild(li);
+               });
+         })
+         
+      }
+
+      function getFileData(myFile){
+         var file = myFile.files[0];  
+         var filename = file.name;
+         document.getElementById("file_name").innerHTML = "Uploaded: " + filename;
+      }
+   
+   </script>
+
+   <style>
+      *{
+         font-family: Arial;
+      }
+
+      body {
+         background-color: #eee;
+      }
+
+      .container {
+         padding: 10px;
+      }
+
+      .sub-container {
+         display: flex;
+         flex-direction: column;
+         padding: 10px;
+         flex-wrap: wrap;
+         margin-bottom: 50px;
+      }
+
+      .title {
+         font-size: 20px;
+         font-weight: 700;
+      }
+
+      .container form {
+         display: flex;
+         align-items: flex-start;
+         justify-content: center;
+         flex-direction: column;
+         padding: 10px 0px;
+         flex: 1;
+      }
+
+      div#model-list, div#sensor-list, div#controller-list {
+         display: flex;
+         flex-wrap: wrap;
+      }
+
+      .model-list-item, .sensor-list-item, .controller-list-item {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 10px;
+         padding: 10px 15px;
+         background-color: #77c7eb;
+         cursor: pointer;
+         font-size: 14px;
+         font-weight: 700;
+         height: 100%;
+         margin: 10px 10px 10px 0px;
+         border-radius: 5px
+      }
+
+      .form-control {
+         display: flex;
+         flex-direction: column;
+         margin: 10px 0px;
+         flex: 1;
+         width: 40%;
+      }
+
+      .form-control .label {
+         font-size: 14px;
+         font-weight: 700;
+         margin: 10px 0px;
+      }
+
+      .form-control label.upload-button {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         min-height: 10px;
+         padding: 10px 15px;
+         background-color: #045e86;
+         cursor: pointer;
+         font-size: 14px;
+         font-weight: 700;
+         height: 100%;
+         margin: 10px 10px 10px 0px;
+         color: #fff;
+         max-width: 100px;
+      }
+
+      span#file-name {
+         font-size: 12px;
+      }
+
+      .form-control button {
+         width: 50%;
+         cursor: pointer;
+         background-color: #045e86;
+         color: #eee;
+         border: none;
+         padding: 10px;
+         font-size: 14px;
+         font-weight: 700;
+      }
+
+      .app-header {
+         display: flex;
+         flex: 1;
+         justify-content: space-between;
+      }
+
+      .app-header .heading {
+         font-size: 25px;
+         font-weight: 700;
+         padding-bottom: 10px;
+         text-decoration: underline;
+      }
+
+      .app-header .action-btn {
+         display: flex;
+         flex: 1;
+         justify-content: flex-end;
+      }
+
+      .app-header .action-btn button {
+         background-color: #045e86;
+         color: #eee;
+         border: none;
+         padding: 10px 20px;
+         margin: 0px 5px;
+         font-size: 14px;
+         font-weight: 700;
+         cursor: pointer;
+         margin: 0px 5px
+      }
+
+      footer {
+         bottom: 0;
+         position: absolute;
+         width: 100%;
+         margin: 0px -8px 0px -8px;
+      }
+
+      .footer-left {
+         min-height: 40px;
+         background-color: #ccc;
+         padding: 10px 10px;
+      }
+   </style>
+
+   <body onload="show()">
+      <div class="container">
+         <div class="app-header">
+            <div class="heading">MLOps Seva</div>
+            <div class="action-btn">
+               <a href="{{ home }}"><button class="home">Home</button></a>
+               <a href="{{ home }}"><button class="logout">Logout</button></a>
+            </div>
+         </div>
+         <div class="sub-container">
+            <div class="title">Models</div>
+            <div id="model-list">
+               
+            </div>
+         </div>
+         <hr>
+         <div class="sub-container">
+            <div class="title">Sensors</div>
+            <div id="sensor-list">
+               
+            </div>
+         </div>
+         <hr>
+         <div class="sub-container">
+            <div class="title">Controllers</div>
+            <div id="controller-list">
+               
+            </div>
+         </div>
+         <hr>
+         <div class="sub-container">
+            <div class="title">Application Upload Form</div>
+            <form action = "{{ upload_url }}" method = "POST" enctype = "multipart/form-data">
+               <div class="form-control">
+                  <div class="label">Application Details</div>
+                  <label class="upload-button" for="app_file">Upload zip file</label>
+                  <input style="display: none;" type = "file" name = "file" id="app_file" 
+                     accept=".zip,.rar,.7zip" onchange="javascript:getFileData(this);">
+                  <span class="file-name" id="file_name">No file chosen</span>
+               </div>
+               <div class="form-control">
+                  <button type = "submit">Submit</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </body>
+   <footer>
+      <div class="footer-left">
+         &copy; 2022 Internals of Application Server : Group-6
+      </div>
+  </footer>
+</html>

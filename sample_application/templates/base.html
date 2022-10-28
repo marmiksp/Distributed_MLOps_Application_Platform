@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<style>
+    *{
+        font-family: Arial;
+    }
+
+    body {
+        background-color: #eee;
+    }
+
+    .container {
+        padding: 10px;
+    }
+
+    footer {
+        bottom: 0;
+        position: absolute;
+        width: 100%;
+        margin: 0px -8px 0px -8px;
+    }
+
+    .footer-left {
+        min-height: 40px;
+        background-color: #ccc;
+        padding: 10px 10px;
+    }
+
+    .role-group {
+        display: flex;
+    }
+    
+    .role-item {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100px;
+        margin: 10px;
+    }
+
+    .role-item input[type="radio"]:checked + label {
+        background-color: #045e86;
+        color: #eee;
+    }
+
+    label.card {
+        font-size: 18px;
+        font-weight: 700;
+        flex: 1;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #77c7eb;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <h3>{% block title %}{% endblock %}</h3>
+    <div class="container">
+        {% block body %}{% endblock %}
+    </div>
+</body>
+<footer>
+    <div class="footer-left">
+        &copy; 2022 Internals of Application Server : Group-6
+    </div>
+</footer>
+</html>

@@ -1,0 +1,115 @@
+{
+    "KAFKA_HOST_ADDR": "13.71.94.55:9092",
+
+    "VM_MAPPING": {
+        "NOTIFICATION": "vm1",
+        "SENSOR": "vm1",
+        "MODEL": "vm1",
+        "LOAD": "vm1",
+        "APP": "vm1",
+        "NODE": "vm1",
+        "SCHEDULER": "vm1",
+        "AUTH": "vm1",
+        "CONTROLLER": "vm1",
+        "DEPLOYER": "vm1",
+        "VM1": "vm2"
+    },
+    "PORT": {
+        "NOTIFICATION_PORT": "9000",
+        "SENSOR_PORT": "9100",
+        "MODEL_PORT": "9200",
+        "LOAD_PORT": "9300",
+        "APP_PORT": "9400",
+        "NODE_PORT": "9500",
+        "SCHEDULER_PORT": "9600",
+        "AUTH_PORT": "9800",
+        "CONTROLLER_PORT": "9700",
+        "DEPLOYER_PORT": "9900",
+        "VM1_PORT": "9650"
+    },
+    "ENDPOINTS": {
+        "AI_MANAGER": {
+            "get_model_list": "/list_of_models",
+            "get_prediction": "/get_prediction",
+            "ai_home": "/",
+            "dataScientist": "/dataScientist"
+        },
+        "SENSOR_MANAGER": {
+            "admin": "/",
+            "sensor_info": "/list_of_sensortypes",
+            "getsensordata": "/getsensordata",
+            "list_sensor_info_by_loc": "/list_sensor_info_by_loc"
+        },
+        "APP_MANAGER": {
+            "get_all_models_sensos": "/get_models_sensors",
+            "get_app_list": "/get_app_list",
+            "get_sensor_by_app_id": "/get_sensor_by_app_id",
+            "deploy_app": "/deploy_app",
+            "upload_application": "/upload_application",
+            "get_sensor_data": "/get_sensor_data",
+            "send_controller_message": "/send_controller_message",
+            "get_model_predict": "/get_model_predict",
+            "get_available_resources": "/get_available_resources",
+            "developer": "/developer",
+            "user": "/enduser",
+            "home": "/"
+        },
+        "SCHEDULER_MANAGER": {
+            "deploy_app": "/sendInfo"
+        },
+        "AUTH_MANAGER": {
+            "login": "/login",
+            "register": "/register",
+            "logout": "/logout"
+        },
+        "CONTROLLER_MANAGER": {
+            "add_controller_type": "/add_controller_type",
+            "get_controller_list": "/get_controller_list",
+            "add_controller_instance": "/add_controller_instance",
+            "get_controller_instance_list": "/get_controller_instance_list",
+            "get_controller_instance_details_by_location": "/get_controller_instance_details_by_location",
+            "controller_home": "/"
+        },
+        "NOTIFICATION_MANAGER": {
+            "send_email": "/send_email",
+            "send_sms": "/send_sms"
+        },
+        "NODE_MANAGER":{
+            "get_schedule_app": "/get_schedule_app"
+        },
+        "LOAD_MANAGER":{
+            "get_node_id": "/get_node_id"
+        },
+        "DEPLOYER_MANAGER":{
+            "send_to_deployer":"/send_to_deployer"
+        }
+    },
+    "LIST":["SENSOR","MODEL","APP","AUTH","DEPLOYER","NODE","LOAD","SCHEDULER", "CONTROLLER", "NOTIFICATION","VM1"],
+    "FILES":{
+        "SENSOR_FILE": "sensor_manager.py",
+        "MODEL_FILE": "aimanager.py",
+        "APP_FILE": "appmanager.py",
+        "AUTH_FILE": "auth-manager.py",
+        "DEPLOYER_FILE": "deployer.py",
+        "NODE_FILE": "NodeManager.py",
+        "LOAD_FILE" : "LoadBalancer.py",
+        "SCHEDULER_FILE": "Scheduler.py",
+        "CONTROLLER_FILE": "controller_manager.py",
+        "NOTIFICATION_FILE": "notification_manager.py",
+        "VM1_FILE": "vm1.py"
+    },
+
+    "FOLDER_NAME": {
+        "SENSOR":"Sensor_Manager",
+        "MODEL": "AI_Manager",
+        "LOAD": "LoadBalancer",
+        "APP": "app-manager",
+        "DEPLOYER": "Deployer",
+        "NODE": "NodeManager",
+        "SCHEDULER":"Scheduler",
+        "AUTH":"Auth_Manager",
+        "NOTIFICATION": "Notification_Manager",
+        "CONTROLLER": "Controller_Manager",
+        "VM1":"Virtual_Machine"
+        }
+}

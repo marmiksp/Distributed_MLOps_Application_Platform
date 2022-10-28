@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>AI Platform | MLOps Seva</title>
+</head>
+<script>
+  function getFileData(myFile){
+    var file = myFile.files[0];  
+    var filename = file.name;
+    document.getElementById("file_name").innerHTML = "Uploaded: " + filename;
+  }
+</script>
+<style>
+  * {
+    font-family: Arial;
+  }
+
+  body {
+    background-color: #eee;
+  }
+
+  .container {
+    padding: 10px;
+  }
+
+  .sub-container {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+  }
+
+  .title {
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  .container form {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    padding: 10px 0px;
+    flex: 1;
+  }
+
+  .form-control {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0px;
+    flex: 1;
+    width: 40%;
+  }
+
+  .form-control .label {
+    font-size: 14px;
+    font-weight: 700;
+    margin: 10px 0px;
+  }
+
+  .form-control label.upload-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10px;
+    padding: 10px 15px;
+    background-color: #045e86;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 700;
+    height: 100%;
+    margin: 10px 10px 10px 0px;
+    color: #fff;
+    max-width: 100px;
+  }
+
+  span#file-name {
+    font-size: 12px;
+  }
+
+  .form-control button {
+    width: 50%;
+    cursor: pointer;
+    background-color: #045e86;
+    color: #eee;
+    border: none;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .app-header {
+    display: flex;
+    flex: 1;
+    justify-content: space-between;
+  }
+
+  .app-header .heading {
+    font-size: 25px;
+    font-weight: 700;
+    padding-bottom: 10px;
+    text-decoration: underline;
+  }
+
+  .app-header .action-btn {
+    display: flex;
+    flex: 1;
+    justify-content: flex-end;
+  }
+
+  .app-header .action-btn button {
+    background-color: #045e86;
+    color: #eee;
+    border: none;
+    padding: 10px 20px;
+    margin: 0px 5px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin: 0px 5px;
+  }
+
+  footer {
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    margin: 0px -8px 0px -8px;
+  }
+
+  .footer-left {
+    min-height: 40px;
+    background-color: #ccc;
+    padding: 10px 10px;
+  }
+</style>
+
+<body>
+
+  <!-- <form id="file-upload" action = "{{ upload_url }}" method = "POST" enctype = "multipart/form-data">
+        <label for="myfile">Select a file:</label>
+        <input type="file" id="myfile" name="zipfile"><br><br>
+        <input type="submit">
+      </form> -->
+  <div class="container">
+    <div class="app-header">
+      <div class="heading">MLOps Seva</div>
+      <div class="action-btn">
+        <a href="{{ home }}"><button class="home">Home</button></a>
+        <a href="{{ home }}"><button class="logout">Logout</button></a>
+      </div>
+   </div>
+    <div class="sub-container">
+      <div class="title">Application Upload Form</div>
+      <form id="file-upload" action="{{ upload_url }}" method="POST" enctype="multipart/form-data">
+        <div class="form-control">
+          <div class="label">AI Model Details</div>
+          <label class="upload-button" for="myfile">Upload zip file</label>
+          <input style="display: none;" type="file" name="zipfile" id="myfile" accept=".zip,.rar,.7zip"
+            onchange="javascript:getFileData(this);">
+          <span class="file-name" id="file_name">No file chosen</span>
+        </div>
+        <div class="form-control">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
+    </div>
+
+
+
+  </div>
+</body>
+<footer>
+  <div class="footer-left">
+    &copy; 2022 Internals of Application Server : Group-6
+  </div>
+</footer>
+
+</html>

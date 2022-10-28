@@ -1,0 +1,16 @@
+{
+    "vm1": "http://20.219.97.80:",
+    "vm2": "http://20.219.100.230:",
+    "vm3": "http://loaclhost:",
+    "vm4": "http://loaclhost:",
+
+    "vm1_username": "azureuser",
+    "vm2_username": "azureuser",
+    "vm3_username": "azureuser",
+    "vm4_username": "azureuser",
+
+    "vm1_password": "Abc@azureuser",
+    "vm2_password": "Abc@azureuser",
+    "vm3_password": "Abc@azureuser",
+    "vm4_password": "Abc@azureuser"
+}
